@@ -1,64 +1,55 @@
 ## NCAA Game Highlights Processor
-
-Overview
-
 The NCAA Game Highlights Processor project uses RapidAPI to fetch NCAA game highlights. The project runs inside a Docker container and leverages AWS MediaConvert for media file processing.
 
-File Overview
+# File Overview
 
-config.py
+- config.py
 
-Loads environment variables and assigns default values.
+1. Loads environment variables and assigns default values.
 
-Allows configuration for different environments (development, staging, production).
+2. Allows configuration for different environments (development, staging, production).
 
-fetch.py
+- fetch.py
 
-Determines the date and league (NCAA) for fetching highlights.
+1. Determines the date and league (NCAA) for fetching highlights.
 
-Retrieves highlights via API and stores them as basketball_highlight.json in an S3 bucket.
+2. Retrieves highlights via API and stores them as basketball_highlight.json in an S3 bucket.
 
-process_one_video.py
+- process_one_video.py
 
-Reads the JSON file from the S3 bucket.
+1. Reads the JSON file from the S3 bucket.
 
-Extracts the first video URL and downloads it into memory.
+2. Extracts the first video URL and downloads it into memory.
 
-Stores the video in the S3 bucket (videos/ folder).
+3. Stores the video in the S3 bucket (videos/ folder).
 
-Logs the process.
+4. Logs the process.
 
-mediaconvert_process.py
+- mediaconvert_process.py
 
-Configures and submits an AWS MediaConvert job.
+1. Configures and submits an AWS MediaConvert job.
 
-Adjusts codec, resolution, bitrate, and audio settings.
+2. Adjusts codec, resolution, bitrate, and audio settings.
 
-Saves the processed video in the S3 bucket.
+3. Saves the processed video in the S3 bucket.
 
-run_all.py
-
+- run_all.py
 Runs all scripts sequentially, allowing buffer time for execution.
 
-.env
-
+- .env
 Stores sensitive environment variables securely.
 
-Dockerfile
-
+- Dockerfile
 Defines build instructions for the Docker image.
 
-Terraform Scripts
 
-Automates provisioning of AWS resources: S3, IAM roles, ECR, ECS.
-
-Prerequisites
+## Prerequisites
 
 1. Create a RapidAPI Account
 
-Sign up on RapidAPI.
+- Sign up on RapidAPI.
 
-Use the Sports Highlights API (basic plan is free).
+- Use the Sports Highlights API (basic plan is free).
 
 2. Verify Installed Dependencies
 
@@ -73,22 +64,21 @@ python3 --version
 
 3. Retrieve AWS Account ID
 
-Log in to AWS Management Console.
+- Log in to AWS Management Console.
 
-Copy your AWS Account ID from the top-right corner.
+- Copy your AWS Account ID from the top-right corner.
 
 4. Retrieve AWS Access Keys
 
-Navigate to IAM → Users → Security Credentials.
+- Navigate to IAM → Users → Security Credentials.
 
-Generate an Access Key ID and Secret Access Key.
+- Generate an Access Key ID and Secret Access Key.
 
-Technical Diagram
 
-GameHighlightProcessor
+## Technical Diagram
+<img width="443" alt="image" src="https://github.com/user-attachments/assets/603ee1c5-f4c8-455b-a264-dae919e331ab" />
 
-Project Structure
-
+# Project Structure
 src/
 ├── Dockerfile
 ├── config.py
@@ -99,21 +89,10 @@ src/
 ├── run_all.py
 ├── .env
 ├── .gitignore
-└── terraform/
-    ├── main.tf
-    ├── variables.tf
-    ├── secrets.tf
-    ├── iam.tf
-    ├── ecr.tf
-    ├── ecs.tf
-    ├── s3.tf
-    ├── container_definitions.tpl
-    └── outputs.tf
+└── .gitignore
 
-Getting Started
-
+# Getting Started
 Step 1: Clone the Repository
-
 git clone https://github.com/alahl1/NCAAGameHighlights.git
 cd src
 
