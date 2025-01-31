@@ -6,7 +6,6 @@ The NCAA Game Highlights Processor project uses RapidAPI to fetch NCAA game high
 - Automated highlight fetching from RapidAPI
 - AWS MediaConvert for video processing
 - S3 storage for raw and processed videos
-- Infrastructure automation via Terraform (Future)
 
 # Prerequisites
 - RapidAPI Account: Sign up at RapidAPI and obtain an API Key
